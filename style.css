@@ -1,0 +1,88 @@
+:root {
+  --disable: #bbb;
+  --enable: #222;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+}
+html {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-around;
+  align-items: center;
+  max-height: 100vh;
+  width: 100%;
+}
+
+.options {
+  display: flex;
+  justify-content: space-around;
+  min-width: 500px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.option {
+  display: flex;
+  flex-direction: column;
+}
+
+.option_type {
+  font-size: 2rem;
+  color: var(--disable);
+  font-weight: 800;
+  text-align: center;
+}
+
+#opt2 {
+  color: var(--enable);
+}
+
+.btn {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 2rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: rgba(153, 153, 153, 0.2);
+  width: 500px;
+  text-align: center;
+}
+
+.leaderboard {
+  position: absolute;
+  top: 0;
+  left: 3rem;
+  display: flex;
+  flex-direction: column;
+  width: 20rem;
+  border: 4px double #222;
+  height: 560px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 0.3rem;
+}
+
+.leaderboard__head {
+  font-size: 1.7rem;
+  text-align: center;
+  border-bottom: 1px solid #222;
+  padding: 0.6rem;
+}
+
+.leader {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.2rem;
+  border-bottom: 1px;
+  border-bottom-style: groove;
+  text-transform: capitalize;
+}
