@@ -45,16 +45,33 @@ function writeLeader(data) {
 }
 
 function updateData(data) {
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", "./score.json", true);
-  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4 && xhr.readyState === 201) {
-      const serverResponse = JSON.parse(xhr.response);
-      console.log(serverRespose);
-    }
-  };
-  xhr.send(JSON.stringify(data));
+  // var xhr = new XMLHttpRequest();
+  // xhr.open("POST", "./score.json", true);
+  // xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+  // xhr.onreadystatechange = function () {
+  //   if (xhr.readyState === 4 && xhr.readyState === 201) {
+  //     const serverResponse = JSON.parse(xhr.response);
+  //     console.log(serverRespose);
+  //   }
+  // };
+  // xhr.send(JSON.stringify(data));
+
+  var data = "data=" + data;
+  var xmlhttp = new XMLHttpRequest();
+  if ("withCredentials" in xmlhttp) {
+    xmlhttp.onreadystatechange = function () {
+      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        console.log("Done!!!");
+      }
+    };
+    xmlhttp.open("POST", "save.json", true);
+    //Must add this request header to XMLHttpRequest request for POST
+    xmlhttp.setRequestHeader(
+      "Content-type",
+      "application/x-www-form-urlencoded"
+    );
+    xmlhttp.send(data);
+  }
 }
 
 function handleHit(score) {
