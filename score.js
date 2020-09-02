@@ -45,26 +45,16 @@ function writeLeader(data) {
 }
 
 function updateData(data) {
-  // var xhr = new XMLHttpRequest();
-  // xhr.open("POST", "./score.json", true);
-  // xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-  // // xhr.onreadystatechange = function () {
-  // //   if (xhr.readyState === 4 && xhr.readyState === 201) {
-  // //     const serverResponse = JSON.parse(xhr.response);
-  // //     console.log(serverRespose);
-  // //   }
-  // // };
-  // xhr.send(JSON.stringify(data));
-  var rawFile = new XMLHttpRequest();
-  rawFile.overrideMimeType("application/json");
-  rawFile.open("POST", "./score.json");
-  rawFile.onreadystatechange = function () {
-    if (rawFile.readyState === 4 && rawFile.status == "200") {
-      console.log(JSON.parse(rawFile.response));
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "./score.json", true);
+  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.readyState === 201) {
+      const serverResponse = JSON.parse(xhr.response);
+      console.log(serverRespose);
     }
   };
-  rawFile.send(JSON.stringify(data));
-  console.log("Done!!!");
+  xhr.send(JSON.stringify(data));
 }
 
 function handleHit(score) {
