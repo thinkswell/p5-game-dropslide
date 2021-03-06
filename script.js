@@ -19,17 +19,17 @@ class Platform {
   color(x) {}
 }
 
-let platform;
-let drops = [];
+var platform;
+var drops = [];
 
-let score = 0;
-let high = score;
-let velocity = 3;
-let updateVel = false;
-let locked = false;
-let newX;
-let plateformVelocity = 0;
-let level = 0;
+var score = 0;
+var high = score;
+var velocity = 3;
+var updateVel = false;
+var locked = false;
+var newX;
+var plateformVelocity = 0;
+var level = 0;
 
 function setup() {
   let canvaWidth = 500;
@@ -53,7 +53,7 @@ function draw() {
   textSize(17);
   text(`Highest: ${high}`, 5, 20);
   textSize(25);
-  let number = score >= 0 ? score : 0;
+  let number = score || 0;
   text(`Score: ${number}`, 5, 50);
   text(`Level: ${level}`, width - 100, 50);
 
@@ -153,4 +153,14 @@ function mouseClicked() {
 
 function keyReleased() {
   plateformVelocity = 0;
+}
+
+function handleHit(s) {
+  score = 0;
+  high = s;
+  velocity = 3;
+  updateVel = false;
+  locked = false;
+  plateformVelocity = 0;
+  level = 0;
 }
