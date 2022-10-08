@@ -38,7 +38,9 @@ function setup() {
     canvaWidth = window.innerWidth;
   }
   if (window.innerHeight <= 560) {
-    canvaHeight = window.innerHeight;
+    canvaHeight = window.innerHeight - 60;
+  } else {
+    canvaHeight = window.innerHeight - 60;
   }
   createCanvas(canvaWidth, canvaHeight);
   platform = new Platform(width / 2 - 50, height - 80);
@@ -100,7 +102,7 @@ function draw() {
         handleHit(score);
       }
       overlay();
-      console.log("Hit!!");
+      console.log('Hit!!');
 
       fill(255, 0, 0);
       rect(0, top - 10, width, 20);
