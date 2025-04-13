@@ -1,3 +1,8 @@
+const SCORE_INCREMENT = 10;
+const INITIAL_VELOCITY = 3;
+const VELOCITY_INCREMENT = 1;
+const PLATFORM_STEP = 10;
+
 class Platform {
   constructor(x, y) {
     this.x = x;
@@ -24,7 +29,7 @@ var drops = [];
 
 var score = 0;
 var high = score;
-var velocity = 3;
+var velocity = INITIAL_VELOCITY;
 var updateVel = false;
 var locked = false;
 var newX;
@@ -40,12 +45,14 @@ function setup() {
   if (window.innerHeight <= 560) {
     canvaHeight = window.innerHeight - 60;
   } else {
-    canvaHeight = window.innerHeight - 60;
+    canvaHeight = window.innerHeight - 100;
   }
-  createCanvas(canvaWidth, canvaHeight);
+  const canvas = createCanvas(canvaWidth, canvaHeight);
+  canvas.parent('canvas'); // Attach the canvas to the <main id="canvas"> element
   platform = new Platform(width / 2 - 50, height - 80);
   newX = width / 2;
 }
+
 function draw() {
   background(0);
   // drop.update();
@@ -76,12 +83,12 @@ function draw() {
     exitPointerLock();
     if (keyCode === 37) {
       // newX = platform.x - plateformVelocity;
-      newX = platform.x - 10;
+      newX = platform.x - PLATFORM_STEP;
       // plateformVelocity += 0.5;
     }
     if (keyCode === 39) {
       // newX = platform.x + 1 + plateformVelocity;
-      newX = platform.x + 10;
+      newX = platform.x + PLATFORM_STEP;
       // plateformVelocity += 0.5;
     }
   }
@@ -103,22 +110,16 @@ function draw() {
       }
       overlay();
       console.log('Hit!!');
-
       fill(255, 0, 0);
       rect(0, top - 10, width, 20);
-      platform.moveTo(newX);
-      platform.show();
-      score = 0;
-      drops.splice(0, drops.length);
-      velocity = 3;
-      level = 0;
+      resetGame();
       noLoop();
     }
 
     if (drops.length > 0 && drops[i].offPlateform(platform)) {
       drops.splice(i, 1);
-      if (score > 1 && score % 10 == 0) {
-        velocity += 1;
+      if (score > 1 && score % SCORE_INCREMENT == 0) {
+        velocity += VELOCITY_INCREMENT;
         level += 1;
       }
       score += 1;
@@ -160,9 +161,18 @@ function keyReleased() {
 function handleHit(s) {
   score = 0;
   high = s;
-  velocity = 3;
+  velocity = INITIAL_VELOCITY;
   updateVel = false;
   locked = false;
   plateformVelocity = 0;
   level = 0;
+}
+
+function resetGame() {
+  score = 0;
+  drops.splice(0, drops.length);
+  velocity = INITIAL_VELOCITY;
+  level = 0;
+  platform.moveTo(newX);
+  platform.show();
 }

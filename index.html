@@ -7,24 +7,25 @@
     <title>💥 Drop Slide Boom 💥</title>
   </head>
   <body>
-    <!-- <div class="leaderboard">
-      <div class="leaderboard__head">🎉 Leaderboard 🎁</div>
-      <span class="leaderData"></span>
-    </div> -->
-
+    <main id="canvas"></main>
     <div class="options">
       <div class="option">
-        <div class="option_type" id="opt1">Keyboard</div>
-        <div class="des">
-          (Use &leftarrow; &rightarrow; arrow keys to activate.)
+        <div class="option_type" id="opt1">🎮 Keyboard</div>
+        <div class="option_type-des">
+          (Use <span class="key">&larr;</span> <span class="key">&rarr;</span>)
         </div>
       </div>
       <div class="option">
-        <div class="option_type" id="opt2">Mouse</div>
-        <div class="des">(Click to activate.)</div>
+        <div class="option_type" id="opt2">🖱️ Mouse</div>
+        <div class="option_type-des">(Click to activate.)</div>
       </div>
     </div>
-    <div class="btn">Restart</div>
+    <button class="btn" aria-label="Restart Game">Restart</button>
+
+    <footer class="footer">
+      Made with <span class="heart">❤️</span> by 
+      <a href="https://krishnav.netlify.app/" target="_blank" rel="noopener noreferrer">@krishna</a>
+    </footer>
   </body>
   <script defer src="./js/p5/p5.min.js"></script>
   <script defer src="./js/drop.js"></script>

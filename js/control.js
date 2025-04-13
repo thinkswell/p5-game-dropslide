@@ -30,9 +30,20 @@ function overlay() {
   restart.style.visibility = "visible";
 }
 
+function debounce(func, delay) {
+  let timeout;
+  return function (...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), delay);
+  };
+}
+
 noOverlay();
 
-restart.addEventListener("click", () => {
-  loop();
-  noOverlay();
-});
+restart.addEventListener(
+  "click",
+  debounce(() => {
+    loop();
+    noOverlay();
+  }, 300)
+);
